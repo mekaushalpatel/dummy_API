@@ -1,0 +1,143 @@
+{
+	"id": "3a6f1f11-cecd-4423-8837-f471d0f25a54",
+	"name": "Dummy_API",
+	"description": "",
+	"auth": null,
+	"events": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "aba41de6-a0e1-41f5-b595-0b0004566f21",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "0d79034e-d353-46ac-bcf0-a600e0eac0ae",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variables": [],
+	"order": [
+		"870fe8d9-fffd-48a0-9a21-36ffed4b4c52",
+		"a5348a79-6aeb-4fca-b487-851562f6c5d2",
+		"f834155b-b254-46ee-ab2e-7bf9b1f5f92a"
+	],
+	"folders_order": [],
+	"folders": [],
+	"requests": [
+		{
+			"id": "870fe8d9-fffd-48a0-9a21-36ffed4b4c52",
+			"name": "With Valid API",
+			"url": "{{URL}}/\n/api/users?page=2",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "page",
+					"value": "2",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fe26eba2-89f6-4987-86a5-90f933701cc2",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "a5348a79-6aeb-4fca-b487-851562f6c5d2",
+			"name": "With Invalid request",
+			"url": "{{URL}}/\n/api/",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d7867691-0c69-42fb-ba89-4756b5b8f7b6",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "f834155b-b254-46ee-ab2e-7bf9b1f5f92a",
+			"name": "Create User",
+			"url": "{{URL}}/\n/api/users",
+			"description": "",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b647eafd-7712-43ee-b554-fe760bb311c8",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"folder": null,
+			"rawModeData": "{\r\n    \"name\": \"morpheus\",\r\n    \"job\": \"leader\"\r\n}",
+			"headers": "",
+			"pathVariables": {}
+		}
+	]
+}
